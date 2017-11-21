@@ -93,8 +93,8 @@ service-worker: true
 
 # Friends
 friends: [
-    {
-        title: "简书·BY",
-        href: "http://www.jianshu.com/u/ddf5f4dac31c"
-    }
+    #{
+    #    title: "简书·BY",
+    #    href: "http://www.jianshu.com/u/ddf5f4dac31c"
+    #}
 ]
