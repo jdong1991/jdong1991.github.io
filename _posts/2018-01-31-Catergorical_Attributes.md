@@ -15,8 +15,6 @@ tags:
 
 最近看到一篇解决**High-Cardinality Categorical Attributes**的论文，收益颇多，在这总结一番。
 
-![](http://latex.codecogs.com/gif.latex?\\frac{\\partial J}{\\partial \\theta_k^{(j)}}=\\sum_{i:r(i,j)=1}{\\big((\\theta^{(j)})^Tx^{(i)}-y^{(i,j)}\\big)x_k^{(i)}}+\\lambda \\xtheta_k^{(j)})
-
 ## Low-cardinality categorical attributes
 先来看看常见的低基数的定性特征。
 
@@ -101,6 +99,9 @@ tags:
 
 
 假设在一个二分类问题中，预测目标为**Y**,\\(Y\in(0,1)\\),\\(X_i\\)是特征**X**的一个转换后的值，\\(S_i\\)是已知\\(X=X_i\\)，**Y**出现的概率。
+
+
+![](http://latex.codecogs.com/gif.latex?X_i\to S_i=P(Y|X=X_i)\qquad (1)})
 
 $$X_i\to S_i=P(Y|X=X_i)\qquad (1)$$
 
