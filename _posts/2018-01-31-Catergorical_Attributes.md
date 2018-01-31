@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Catergorical_Attributes
+title:      Catergorical Attributes
 subtitle:   
 date:       2018-01-31
 author:     JD
