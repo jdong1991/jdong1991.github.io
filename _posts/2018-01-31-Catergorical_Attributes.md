@@ -15,6 +15,8 @@ tags:
 
 最近看到一篇解决**High-Cardinality Categorical Attributes**的论文，收益颇多，在这总结一番。
 
+![](http://latex.codecogs.com/gif.latex?\\frac{\\partial J}{\\partial \\theta_k^{(j)}}=\\sum_{i:r(i,j)=1}{\\big((\\theta^{(j)})^Tx^{(i)}-y^{(i,j)}\\big)x_k^{(i)}}+\\lambda \\xtheta_k^{(j)})
+
 ## Low-cardinality categorical attributes
 先来看看常见的低基数的定性特征。
 
