@@ -27,6 +27,7 @@ tags:
     print('n_values_: ',enc.n_values_)
     print('feature_indices_: ',enc.feature_indices_)
     print(enc.transform([[0, 1, 1]]).toarray())
+ 
 代码运行结果
 
     n_values_:  [2 3 4]
@@ -61,6 +62,7 @@ tags:
     print('classes_: ',list(le.classes_))
     print('transform: ',le.transform(["tokyo", "tokyo", "paris"]))
     print('inverse_transform: ',list(le.inverse_transform([2, 2, 1])))
+    
 代码运行结果
 
     classes_:  ['amsterdam', 'paris', 'tokyo']
@@ -73,6 +75,7 @@ tags:
 
 	print('fit_transform1: \n',LabelBinarizer().fit_transform(['yes', 'no', 'no', 'yes']))
     print('fit_transform2: \n',LabelBinarizer().fit_transform(['yes', 'no', 'maybe', 'yes']))
+    
 代码运行结果
 
     fit_transform1: 
@@ -253,6 +256,7 @@ classification和regression的区别在于先验概率，classification是对不
     print(train.head(5))
     print('Number of Shop: ',len(train['ShopID'].unique()))
     print('Number of City: ',len(train['CityName'].unique()))
+    
 代码运行结果
 
 |ShopID|CityName|SaleAmount
@@ -277,6 +281,7 @@ classification和regression的区别在于先验概率，classification是对不
 	me=MeanEncoder(categorical_features=['ShopID','CityName'],n_splits=10,target_type='regression')
 	X_train=me.fit_transform(X_train,y_train)
 	print(X_train.head())
+	
 代码运行结果
 
 |ShopID|CityName|ShopID_pred|CityName_pred|
@@ -293,6 +298,7 @@ classification和regression的区别在于先验概率，classification是对不
 
     X_test=me.transform(X_test)
     print(X_test.head(5))
+    
 代码运行结果
 
 |ShopID|CityName|ShopID_pred|CityName_pred|
