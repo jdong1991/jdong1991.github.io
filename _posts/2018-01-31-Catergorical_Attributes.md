@@ -11,11 +11,11 @@ tags:
     - categorical
 ---
 
-#定性特征的处理
+# 定性特征的处理
 
 最近看到一篇解决**High-Cardinality Categorical Attributes**的论文，收益颇多，在这总结一番。
 
-## low-cardinality categorical attributes
+## Low-cardinality categorical attributes
 先来看看常见的低基数的定性特征。
 
 1.特征是数值型，可以使用`sklearn.preprocessing.OneHotEncoder`：
