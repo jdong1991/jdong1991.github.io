@@ -98,38 +98,50 @@ tags:
 下面粗略介绍另外一种方法，来自这篇[论文](https://pan.baidu.com/s/1bqcNJjh)，感兴趣可以去看看，可以很好的处理高基数定性特征。
 
 
-假设在一个二分类问题中，预测目标为**Y**,\\(Y\in(0,1)\\),\\(X_i\\)是特征**X**的一个转换后的值，\\(S_i\\)是已知\\(X=X_i\\)，**Y**出现的概率。
+假设在一个二分类问题中，预测目标为**Y**,![][01],![][02]是特征**X**的一个转换后的值，![][03]是已知![][04]，**Y**出现的概率。
 
+[01]: http://latex.codecogs.com/gif.latex?Y\in(0,1)
+[02]: http://latex.codecogs.com/gif.latex?X_i
+[03]: http://latex.codecogs.com/gif.latex?S_i
+[04]: http://latex.codecogs.com/gif.latex?X=X_i
+[05]: http://latex.codecogs.com/gif.latex?X_i\to&space;S_i=P(Y|X=X_i)\qquad&space;(1)
+[06]: http://latex.codecogs.com/gif.latex?n_{iY}
+[07]: http://latex.codecogs.com/gif.latex?n_i
+[08]: http://latex.codecogs.com/gif.latex?S_i=\frac{n_{iY}}{n_i}&space;\qquad&space;(2)
+[09]: http://latex.codecogs.com/gif.latex?S_i&space;=&space;\lambda(n_i)&space;\frac{n_{iY}}{n_i}&space;&plus;&space;(1-\lambda(n_i))&space;\frac{n_{iY}}{n_{TR}}&space;\qquad&space;(3)
+[10]: http://latex.codecogs.com/gif.latex?\lambda(n_i)
+[11]: http://latex.codecogs.com/gif.latex?n_Y
+[12]: http://latex.codecogs.com/gif.latex?n_{TR}
+[13]: http://latex.codecogs.com/gif.latex?\frac{n_{iY}}{n_{RT}}
+[14]: http://latex.codecogs.com/gif.latex?\lambda\cong&space;1
+[15]: http://latex.codecogs.com/gif.latex?\lambda\cong&space;0
+[16]: http://latex.codecogs.com/gif.latex?\lambda(n)=\frac{1}{1&plus;e^{-\frac{(n-k)}{f}}}&space;\qquad&space;(4)
+[17]: http://latex.codecogs.com/gif.latex?S_i=\lambda(n_i)\frac{\sum_{k\in&space;L_i}Y_k}{n_i}&plus;(1-\lambda(n_i))\frac{\sum_{k=1}^{N_{TR}}}{n_{TR}}&space;\qquad&space;(5)
+[18]: http://latex.codecogs.com/gif.latex?\to
 
-![][01]
-![][02]
-![][03]
+![][05]
 
-[01]: http://latex.codecogs.com/svg.latex?X_i\to S_i=P(Y|X=X_i)\qquad (1)
-[02]: http://latex.codecogs.com/svg.latex?g(x)=\int_a^bf(x)+\frac{a}{b}
-[03]: http://latex.codecogs.com/svg.latex?\sum_{i=1}^n{a_i}=0
+当训练集中![][04]的数量是足够大，概率估计可以用(2)来计算，其中![][06]为Y=1的特征中为i的个数，![][07]是的特征为i的个数。
 
-当训练集中\\(X=X_i\\)的数量是足够大，概率估计可以用(2)来计算，其中\\(n_{iY}\\)为Y=1的特征中为i的个数，\\(n_i\\)是的特征为i的个数。
-
-$$S_i=\frac{n_{iY}}{n_i} \qquad (2)$$
+![][08]
 
 可惜这种估计在高基数的定性特征表现的并不好，因此我们需要加强它，根据主观贝叶斯理论，可以将公式改造成公式(3)
 
-$$ S_i = \lambda(n_i) \frac{n_{iY}}{n_i} + (1-\lambda(n_i)) \frac{n_{iY}}{n_T} \qquad (3)$$
+![][09]
 
-其中\\(\lambda(n_i)\\)是单调递增函数，取值在(0,1)，\\(n_Y\\)是训练集中Y=1的样本数，\\(n_{TR}\\)是训练集的总样本数。
+其中![][10]是单调递增函数，取值在(0,1)，![][11]是训练集中Y=1的样本数，![][12]是训练集的总样本数。
 
-公式(3)中在(2)的基础上新加了\\( \frac{n_{iY}}{n_T}\\)，对于Y=1在训练集上的先验概率。当\\(\lambda\cong 1\\)，满足公式(2)的使用条件，可以使用后验概率来进行估计，
-当\\(\lambda\cong 0\\)，\\(n_i\\)很好，这样就可以用先验概率来估计。
+公式(3)中在(2)的基础上新加了![][13]，对于Y=1在训练集上的先验概率。当![][14]，满足公式(2)的使用条件，可以使用后验概率来进行估计，
+当![][15]，![][07]很大，这样就可以用先验概率来估计。
 
-其中，\\(\lambda(n_i)\\)有许多种，这边就选择论文中的s-shaped函数
+其中，![][10]有许多种，这边就选择论文中的s-shaped函数
 
-$$\lambda(n)=\frac{1}{1+e^{-\frac{(n-k)}{f}}} \qquad (4)$$
+![][16]
 
 到这里，其实对于classification问题的高基数定性特征的处理已经完成，对于regression问题，在公式(3)上做一些的变化得到公式(5)，但是在实际处理中
 ，二值分类和连续目标值都是使用一个公式，只是把二值分类的目标值当成是数值目标0和1。
 
-$$S_i=\lambda(n_i)\frac{\sum_{k\in L_i}Y_k}{n_i}+(1-\lambda(n_i))\frac{\sum_{k=1}^{N_{TR}}}{n_{TR}} \qquad (5)$$
+![][17]
 
 ### Python实现
 
@@ -162,7 +174,7 @@ $$S_i=\lambda(n_i)\frac{\sum_{k\in L_i}Y_k}{n_i}+(1-\lambda(n_i))\frac{\sum_{k=1
 	        else:
 	            self.prior_weight_func = lambda x: 1 / (1 + np.exp(-(x - 2) / 1))
 
-其中`categorical_features`是所需转换的定性特征，`n_splits`是交叉检验的折数，默认为5折，`learned_stats`是保存学习知识集，本类主要是为classification和regression，2种问题的计算略有不同。`prior_weight_func`是\\(\lambda(n)\\)，可以选择自己定义，也可以使用默认。
+其中`categorical_features`是所需转换的定性特征，`n_splits`是交叉检验的折数，默认为5折，`learned_stats`是保存学习知识集，本类主要是为classification和regression，2种问题的计算略有不同。`prior_weight_func`是![][10]，可以选择自己定义，也可以使用默认。
 
 ##### 先验概率和后验概率
 
@@ -189,7 +201,7 @@ $$S_i=\lambda(n_i)\frac{\sum_{k\in L_i}Y_k}{n_i}+(1-\lambda(n_i))\frac{\sum_{k=1
 
         return nf_train, nf_test, prior, col_avg_y
 
-在regression中，`prior`是\\(\frac{n_Y}{n_{TR}}\\)，`col_avg_y['beta']`是\\(\lambda(n_i)\\),`col_avg_y[nf_name]`是\\(S_i\\)
+在regression中，`prior`是\\(\frac{n_Y}{n_{TR}}\\)，`col_avg_y['beta']`是![][10],`col_avg_y[nf_name]`是![][03]
 
 ##### 训练集转换特征
 
@@ -298,7 +310,7 @@ classification和regression的区别在于先验概率，classification是对不
 |000001|晋中|12.3922|12.4891|
 |000001|晋中|12.3922|12.4891|
 
-其中ShopID\\(\to\\)ShopID_pred，CityName\\(\to\\)CityName_pred 。
+其中ShopID![][18]ShopID_pred，CityName![][18]CityName_pred 。
 
 ##### 测试集特征转换
 
@@ -315,4 +327,4 @@ classification和regression的区别在于先验概率，classification是对不
 |000001|晋中|12.3991|12.4532|
 |000001|晋中|12.3991|12.4532|
 
-其中采用10折交叉检验，\\(\lambda(n)\\)应视情况自己设置。
+其中采用10折交叉检验，![][10]应视情况自己设置。
