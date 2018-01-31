@@ -4,7 +4,7 @@ title:      Catergorical Attributes
 subtitle:   
 date:       2018-01-31
 author:     JD
-header-img: img/home-bg-art.jpg
+header-img: img/post-jd-feature.jpg
 catalog: true
 tags:
     - feature
@@ -124,7 +124,7 @@ $$\lambda(n)=\frac{1}{1+e^{-\frac{(n-k)}{f}}} \qquad (4)$$
 到这里，其实对于classification问题的高基数定性特征的处理已经完成，对于regression问题，在公式(3)上做一些的变化得到公式(5)，但是在实际处理中
 ，二值分类和连续目标值都是使用一个公式，只是把二值分类的目标值当成是数值目标0和1。
 
-$$S_i=\lambda(n_i)\frac{\sum_{k\in L_i}Y_k}{n_i}+(1-\lambda(n_i))\frac{\sum_{k=1}^{N_{TR}}Y-k}{n_{TR}} \qquad (5)$$
+$$S_i=\lambda(n_i)\frac{\sum_{k\in L_i}Y_k}{n_i}+(1-\lambda(n_i))\frac{\sum_{k=1}^{N_{TR}}Y_k}{n_{TR}} \qquad (5)$$
 
 ### Python实现
 
@@ -157,7 +157,7 @@ $$S_i=\lambda(n_i)\frac{\sum_{k\in L_i}Y_k}{n_i}+(1-\lambda(n_i))\frac{\sum_{k=1
 	        else:
 	            self.prior_weight_func = lambda x: 1 / (1 + np.exp(-(x - 2) / 1))
 
-其中`categorical_features`是所需转换的定性特征，`n_splits`是交叉检验的折数，默认为5折，`learned_stats`是保存学习知识集，本类主要是为classification和regression，2种问题的计算略有不同。`prior_weight_func`是\\(\lambda(n)\\)，可以选择自己定义，也可以使用默认。
+其中`categorical_features`是所需转换的定性特征，`n_splits`是交叉检验的折数，默认为5折，`learned_stats`是保存学习知识集，本类主要是为区分classification和regression，2种问题的计算略有不同。`prior_weight_func`是\\(\lambda(n)\\)，可以选择自己定义，也可以使用默认。
 
 ##### 先验概率和后验概率
 
@@ -184,7 +184,7 @@ $$S_i=\lambda(n_i)\frac{\sum_{k\in L_i}Y_k}{n_i}+(1-\lambda(n_i))\frac{\sum_{k=1
 
         return nf_train, nf_test, prior, col_avg_y
 
-在regression中，`prior`是\\(\frac{n_Y}{n_{TR}}\\)，`col_avg_y['beta']`是\\(\lambda(n_i)\\),`col_avg_y[nf_name]`是\\(S_i\\)
+在regression中，`prior`是\\(\frac{n_Y}{n_{TR}}\\)，`col_avg_y['beta']`是\\(\lambda(n_i)\\),`col_avg_y[nf_name]`是\\(S_i\\) 。
 
 ##### 训练集转换特征
 
