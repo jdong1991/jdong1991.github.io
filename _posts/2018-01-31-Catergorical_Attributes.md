@@ -101,7 +101,7 @@ tags:
 假设在一个二分类问题中，预测目标为**Y**,\\(Y\in(0,1)\\),\\(X_i\\)是特征**X**的一个转换后的值，\\(S_i\\)是已知\\(X=X_i\\)，**Y**出现的概率。
 
 
-![](http://latex.codecogs.com/gif.latex?X_i\to S_i=P(Y|X=X_i)\qquad (1)})
+![](http://latex.codecogs.com/gif.latex?\X_i\to S_i=P(Y|X=X_i)\qquad (1))
 
 $$X_i\to S_i=P(Y|X=X_i)\qquad (1)$$
 
