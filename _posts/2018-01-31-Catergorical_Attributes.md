@@ -105,16 +105,9 @@ tags:
 ![][02]
 ![][03]
 
-[01]: http://latex.codecogs.com/svg.latex?f(x)=(x_i)^2
+[01]: http://latex.codecogs.com/svg.latex?X_i\to S_i=P(Y|X=X_i)\qquad (1)
 [02]: http://latex.codecogs.com/svg.latex?g(x)=\int_a^bf(x)+\frac{a}{b}
 [03]: http://latex.codecogs.com/svg.latex?\sum_{i=1}^n{a_i}=0
-
-作者：_GQW
-链接：https://www.jianshu.com/p/985006c30007
-來源：简书
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-
-$$X_i\to S_i=P(Y|X=X_i)\qquad (1)$$
 
 当训练集中\\(X=X_i\\)的数量是足够大，概率估计可以用(2)来计算，其中\\(n_{iY}\\)为Y=1的特征中为i的个数，\\(n_i\\)是的特征为i的个数。
 
