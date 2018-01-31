@@ -3,7 +3,7 @@ layout:     post
 title:      Catergorical_Attributes
 subtitle:   
 date:       2018-01-31
-author:     BY
+author:     JD
 header-img: img/home-bg-art.jpg
 catalog: true
 tags:
@@ -11,7 +11,7 @@ tags:
     - categorical
 ---
 
-# 定性特征的处理
+#定性特征的处理
 
 最近看到一篇解决**High-Cardinality Categorical Attributes**的论文，收益颇多，在这总结一番。
 
