@@ -101,7 +101,18 @@ tags:
 假设在一个二分类问题中，预测目标为**Y**,\\(Y\in(0,1)\\),\\(X_i\\)是特征**X**的一个转换后的值，\\(S_i\\)是已知\\(X=X_i\\)，**Y**出现的概率。
 
 
-![](http://latex.codecogs.com/gif.latex?\X_i\to S_i=P(Y\|X=X_i)\qquad (1))
+![][01]
+![][02]
+![][03]
+
+[01]: http://latex.codecogs.com/svg.latex?f(x)=(x_i)^2
+[02]: http://latex.codecogs.com/svg.latex?g(x)=\int_a^bf(x)+\frac{a}{b}
+[03]: http://latex.codecogs.com/svg.latex?\sum_{i=1}^n{a_i}=0
+
+作者：_GQW
+链接：https://www.jianshu.com/p/985006c30007
+來源：简书
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 $$X_i\to S_i=P(Y|X=X_i)\qquad (1)$$
 
