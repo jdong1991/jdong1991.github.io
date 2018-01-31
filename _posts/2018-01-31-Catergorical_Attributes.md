@@ -11,11 +11,11 @@ tags:
     - categorical
 ---
 
-#定性特征的处理
+# 定性特征的处理
 
 最近看到一篇解决**High-Cardinality Categorical Attributes**的论文，收益颇多，在这总结一番。
 
-##low-cardinality categorical attributes
+## low-cardinality categorical attributes
 先来看看常见的低基数的定性特征。
 
 1.特征是数值型，可以使用`sklearn.preprocessing.OneHotEncoder`：
@@ -87,8 +87,8 @@ tags:
 	 [0 0 1]]
 
 
-##High-Cardinality Categorical Attributes
-###理论基础
+## High-Cardinality Categorical Attributes
+### 理论基础
 有时候并没有如此幸运。有许多高基数的定性特征存在，比如城市名称、人员ID等。这时候很明显使用One-Hot已经不合适了，那我们应该怎么办？
 
 可能你首先会想到用clustering，这的确是个方法，可以将定性特征由N转换成K类，成功的缩小特征基数。
@@ -122,16 +122,16 @@ $$\lambda(n)=\frac{1}{1+e^{-\frac{(n-k)}{f}}} \qquad (4)$$
 
 $$S_i=\lambda(n_i)\frac{\sum_{k\in L_i}Y_k}{n_i}+(1-\lambda(n_i))\frac{\sum_{k=1}^{N_{TR}}}{n_{TR}} \qquad (5)$$
 
-###Python实现
+### Python实现
 
-#####准备好所需的package
+##### 准备好所需的package
 
     import numpy as np
 	import pandas as pd
 	from sklearn.model_selection import StratifiedKFold,KFold
 	from itertools import product
 
-#####新建一个类，并定义好所需变量
+##### 新建一个类，并定义好所需变量
 
     class MeanEncoder:
 	    def __init__(self, categorical_features, n_splits=5, target_type='classification', prior_weight_func=None):
@@ -155,7 +155,7 @@ $$S_i=\lambda(n_i)\frac{\sum_{k\in L_i}Y_k}{n_i}+(1-\lambda(n_i))\frac{\sum_{k=1
 
 其中`categorical_features`是所需转换的定性特征，`n_splits`是交叉检验的折数，默认为5折，`learned_stats`是保存学习知识集，本类主要是为classification和regression，2种问题的计算略有不同。`prior_weight_func`是\\(\lambda(n)\\)，可以选择自己定义，也可以使用默认。
 
-#####先验概率和后验概率
+##### 先验概率和后验概率
 
     @staticmethod
     def mean_encode_subroutine(X_train, y_train, X_test, variable, target, prior_weight_func):
@@ -182,7 +182,7 @@ $$S_i=\lambda(n_i)\frac{\sum_{k\in L_i}Y_k}{n_i}+(1-\lambda(n_i))\frac{\sum_{k=1
 
 在regression中，`prior`是\\(\frac{n_Y}{n_{TR}}\\)，`col_avg_y['beta']`是\\(\lambda(n_i)\\),`col_avg_y[nf_name]`是\\(S_i\\)
 
-#####训练集转换特征
+##### 训练集转换特征
 
     def fit_transform(self, X, y):
         X_new = X.copy()
@@ -217,7 +217,7 @@ $$S_i=\lambda(n_i)\frac{\sum_{k\in L_i}Y_k}{n_i}+(1-\lambda(n_i))\frac{\sum_{k=1
 
 classification和regression的区别在于先验概率，classification是对不同类别的Y在训练集出现的概率，regression是Y的均值。
 
-#####测试集特征转换
+##### 测试集特征转换
 
     def transform(self, X):
         X_new = X.copy()
@@ -241,9 +241,9 @@ classification和regression的区别在于先验概率，classification是对不
 
         return X_new
 
-###实际应用
+### 实际应用
 某公司需要预测店铺销售，为简化问题，假设特征只有店铺名称(ShopID)，城市名称(CityName)，预测目标是销售额(SaleAmount)。
-#####加载数据
+##### 加载数据
 
     import pandas as pd
     from MeanEncoder import MeanEncoder
@@ -268,7 +268,7 @@ classification和regression的区别在于先验概率，classification是对不
 
 我们发现店铺有647个，城市有182个，这些都是高基数的定性特征，所以可以使用上述方法来解决。
 
-#####高基数定性特征处理
+##### 高基数定性特征处理
 
     X_train=train[['ShopID','CityName']].copy()
 	y_train=train['SaleAmount'].copy()
@@ -289,7 +289,7 @@ classification和regression的区别在于先验概率，classification是对不
 
 其中ShopID\\(\to\\)ShopID_pred，CityName\\(\to\\)CityName_pred 。
 
-#####测试集特征转换
+##### 测试集特征转换
 
     X_test=me.transform(X_test)
     print(X_test.head(5))
