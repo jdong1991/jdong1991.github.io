@@ -18,7 +18,7 @@ tags:
 ## Low-cardinality categorical attributes
 先来看看常见的低基数的定性特征。
 
-### 特征是数值型，可以使用`sklearn.preprocessing.OneHotEncoder`：
+1.特征是数值型，可以使用`sklearn.preprocessing.OneHotEncoder`：
 
     from sklearn.preprocessing import OneHotEncoder
 
@@ -51,7 +51,7 @@ tags:
 |1|0|0|1|0|0|1|0|0|
 
 
-### 特征是字符串型，若直接使用`preprocessing.OneHotEncoder`会报错，这时候可以使用sklearn中的`preprocessing.LabelEncoder`。
+2.特征是字符串型，若直接使用`preprocessing.OneHotEncoder`会报错，这时候可以使用sklearn中的`preprocessing.LabelEncoder`。
 将字符串转换成数值型，然后再使用`preprocessing.OneHotEncoder`。
 
     from sklearn.preprocessing import LabelEncoder
