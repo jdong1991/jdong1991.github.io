@@ -112,7 +112,7 @@ tags:
     housing.hist(bins=50,figsize=(20,15))
     plt.show()
 
-![](../img/post-bg-desk.jpg)
+![](https://ws4.sinaimg.cn/large/006tKfTcgy1fmm4u3j0lmj30nk0kl40i.jpg)
 
 通过这些条形图，我们可以发现：
 
