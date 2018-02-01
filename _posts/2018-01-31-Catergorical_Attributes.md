@@ -7,8 +7,8 @@ author:     JD
 header-img: img/post-jd-feature.jpg
 catalog: true
 tags:
-    - feature
-    - categorical
+    - Feature Engineering
+    - Categorical Attribute
 ---
 
 <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>

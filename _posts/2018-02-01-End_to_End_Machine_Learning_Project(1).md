@@ -112,7 +112,7 @@ tags:
     housing.hist(bins=50,figsize=(20,15))
     plt.show()
 
-![](https://ws4.sinaimg.cn/large/006tKfTcgy1fmm4u3j0lmj30nk0kl40i.jpg)
+![](http://wx1.sinaimg.cn/mw690/006F1DTzly1fo18dc79o9j30wh0nyjss.jpg)
 
 通过这些条形图，我们可以发现：
 
@@ -140,7 +140,7 @@ tags:
 
     housing['median_income'].hist()
 
-![](../img/post-jd-project/2.png)
+![](http://wx4.sinaimg.cn/mw690/006F1DTzly1fo18e9tpmkj30ao070dfq.jpg)
 
     housing['income_cat'] = np.ceil(housing["median_income"] / 1.5)
     housing['income_cat'].where(housing['income_cat']<5,5.0,inplace=True)
@@ -156,7 +156,7 @@ tags:
     1.0     822
     Name: income_cat, dtype: int64
 
-![](../img/post-jd-project/3.png)
+![](http://wx4.sinaimg.cn/mw690/006F1DTzly1fo18eclj8yj30ao070dfr.jpg)
 
 `median_income`大部分分布在2-5，也有一些远超过6。我们也许根据这个采用分层抽样比较好，这样可以令样本更具说服力。可以使用`sklearn.StratifiedShuffleSplit`来实现。
 
@@ -224,7 +224,7 @@ tags:
 
 代码运行结果
 
-![](../img/post-jd-project/4.png)
+![](http://wx3.sinaimg.cn/mw690/006F1DTzly1fo18ef094wj30au07ewfe.jpg)
 
 根据上图，可以很清晰看到密度高的区域和密度低的区域。我们也可以加上`population`和`median_house_value`，然后加上地图，更清晰展示。
 
@@ -242,7 +242,7 @@ tags:
     plt.legend(fontsize=16)
     plt.show()
 
-![](../img/post-jd-project/5.png)
+![](http://wx1.sinaimg.cn/mw690/006F1DTzly1fo18eh6rijj30gi0c3ju9.jpg)
 
 这个图片告诉我们，房价和位置很有关系，比如海洋的距离，也和人口稠密有关，这些推断和我们生活常识也是符合的。
 
@@ -268,7 +268,7 @@ Pearson相关系数是在-1到1之间。接近1，说明有很强的正相关，
 
 pandas.scatter_matrix也可以帮住我们观察属性的相关性。
 
-![](../img/post-jd-project/6.png)
+![](http://wx4.sinaimg.cn/mw690/006F1DTzly1fo18ejkyuhj30kv0k210p.jpg)
 
 可以单独观看各个图，我们来看`median_income`和`median_house_value`，我们可以看到它们的相关性的确很强，`median_house_value`有个很明显的500000的水平线，450000和3500000也有一些苗头。这有助于我们发现和找到这些数据。
 
@@ -278,7 +278,7 @@ pandas.scatter_matrix也可以帮住我们观察属性的相关性。
 
 代码运行结果
 
-![](../img/post-jd-project/7.png)
+![](http://wx2.sinaimg.cn/mw690/006F1DTzly1fo18h0pi8nj30bj07fq4a.jpg)
 
 有时候，某些特征可能与标签并不是有很强的相关性，但是结合起来就起到意想不到的效果，这就是机器学习中比较常见得特征组合。
 
@@ -307,7 +307,7 @@ pandas.scatter_matrix也可以帮住我们观察属性的相关性。
     bedrooms_per_room          -0.259984
     Name: median_house_value, dtype: float64
 
-![](../img/post-jd-project/8.png)
+![](http://wx3.sinaimg.cn/mw690/006F1DTzly1fo18h3fl1oj30bg07f0u7.jpg)
 
 组合成新特征表现不错呦，不过仔细想想也对，更低的total_bedrooms/total_rooms的确说明了房子可能更贵，total_rooms/households越大，可能房子越大，房子当然也就越贵。组合特征需要我们深刻的了解特征背后所代表的含义，并不是所有特征都是可以组合的，我们所需要的是有利于我们模型的特征，没有贡献的特征是应该舍弃的。
 
@@ -372,7 +372,7 @@ pandas.scatter_matrix也可以帮住我们观察属性的相关性。
 
 经常使用的`LabelEncoder`和`OneHotEncoder`组合，但是根据[sklearn官方更新日志](http://scikit-learn.org/dev/whats_new.html)，将在V0.20版本添加CategoricalEncoder，用来处理这类转换问题。
 
-![](../img/post-jd-project/9.png)
+![](http://wx1.sinaimg.cn/mw690/006F1DTzly1fo18h5noasj30lj02tq37.jpg)
 
 嘿嘿，那么我就用这个来吧。
 
