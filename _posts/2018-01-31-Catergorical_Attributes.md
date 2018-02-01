@@ -90,6 +90,21 @@ tags:
 	 [1 0 0]
 	 [0 0 1]]
 
+3.[sklearn官网](http://scikit-learn.org/dev/whats_new.html)中有提及将在V0.20中新加`CategoricalEncoder`，对比OneHotEncoder，这个新类可以处理各种类型特征，其中也包括包含字符串的特征。
+
+    enc = CategoricalEncoder(handle_unknown='ignore')
+    enc.fit([[0, 0, 3], [1, 1, 0], [0, 2, 1], [1, 0, 2]])
+    print(enc.transform([[0, 1, 1], [1, 0, 4]]).toarray())
+
+代码运行结果
+
+    [[1. 0. 0. 1. 0. 0. 1. 0. 0.]
+     [0. 1. 1. 0. 0. 0. 0. 0. 0.]]
+
+也可以使用`encoder='onehot-dense'`，这样可以直接转换成稠密数列。
+
+
+
 
 ## High-Cardinality Categorical Attributes
 ### 理论基础
