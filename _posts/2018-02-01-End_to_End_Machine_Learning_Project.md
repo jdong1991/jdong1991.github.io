@@ -15,7 +15,7 @@ tags:
 ---
 
 
-前段时间在玩Kaggle，现在看到[这本书](https://item.jd.com/12241590.html)，写的真的很实用，在这就分享下如何玩转机器学习项目。
+前段时间在玩Kaggle，看到[这本书](https://item.jd.com/12241590.html)，写的真的很实用，在这就分享下如何玩转机器学习项目。
 
 ## Get the Data
 
