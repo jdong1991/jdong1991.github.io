@@ -1,16 +1,13 @@
 ---
 layout:     post
-title:      End to End Machine Learning Project
+title:      Machine Learning Project
 subtitle:   
-date:       2018-02-01
+date:       2018-02-02
 author:     JD
 header-img: img/post-jd-project.jpg
 catalog: true
 tags:
     - Machine Learning
-    - Data Exploration
-    - Visualization
-    - Feature Engineering
 ---
 
 # End-to-End Machine Learning Project
