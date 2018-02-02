@@ -11,9 +11,9 @@ tags:
     - Data Exploration
     - Visualization
     - Feature Engineering
+    - Model
 ---
 
-# End-to-End Machine Learning Project
 
 前段时间在玩Kaggle，现在看到[这本书](https://item.jd.com/12241590.html)，写的真的很实用，在这就分享下如何玩转机器学习项目。
 
@@ -452,4 +452,198 @@ pandas.scatter_matrix也可以帮住我们观察属性的相关性。
     shape of housing_prepared: 
      (16512, 16)
 
-到这一步，终于完成了数据处理部分，是不是感觉很有成就感，但是其实还有许多有待改进，我们接下来的算法的调参和预测可能会发现我们数据的处理，特征的选取也可能需要重新改进。
+到这一步，终于完成了数据处理部分，是不是感觉很有成就感，但是其实还有许多有待改进，我们接下来的算法的调参和预测可能会发现我们数据的处理不足之处，特征的选取也可能需要重新改进。
+
+## Select And Train a Model
+
+在ML中，有许多成熟的算法让我们选择，其中分为有监督学习，无监督学习，半监督学习，加强学习等。
+
+在我们这里只需要监督学习，有以下算法
+
+- k-Nearest Neighbors
+- Linear Regression
+- Logistic Regression
+- Support Vectotr Machine(SVMs)
+- Desicion Trees
+- Ensemble(Random Forests,GBDT,Xgboost,Lightgbm)
+- Neural networks
+
+先来尝试最简单的`Linear Regression`，`Desicion Trees`，`SVR`，`Random Forests`。
+
+    lin_reg=LinearRegression()
+    lin_reg.fit(housing_prepared,housing_labels)
+    lin_housing_predictions=lin_reg.predict(housing_prepared)
+
+    tree_reg=DecisionTreeRegressor(random_state=42)
+    tree_reg.fit(housing_prepared,housing_labels)
+    tree_housing_predictions=tree_reg.predict(housing_prepared)
+
+    svm_reg = SVR(kernel="linear")
+    svm_reg.fit(housing_prepared, housing_labels)
+    svm_housing_predictions = svm_reg.predict(housing_prepared)
+    
+    forest_reg=RandomForestRegressor(random_state=42)
+    forest_reg.fit(housing_prepared, housing_labels)
+    forest_housing_predictions = forest_reg.predict(housing_prepared)
+
+
+已经使用模型进行预测了，需要知道我们的模型性能如何。在sklearn中的`cross_val_score`可以很好解决这个问题。
+
+    def rmse(model):
+        return np.sqrt(-cross_val_score(model,housing_prepared,housing_labels,scoring='neg_mean_squared_error',cv=10))
+    
+    def display_scores(scores):
+        print('Scores: ',scores)
+        print('Mean: ',scores.mean())
+        print('Standard deviation: ',scores.std())
+    
+    lin_rmse_scores=rmse(LinearRegression())
+    print('lin_rmse_scores:')
+    display_scores(lin_rmse_scores)
+
+    tree_rmse_scores=rmse(DecisionTreeRegressor(random_state=42))
+    print('tree_rmse_scores:')
+    display_scores(tree_rmse_scores)
+
+    svr_rmse_scores=rmse(SVR(kernel='linear'))
+    print('svr_rmse_scores:')
+    display_scores(svr_rmse_scores)
+    
+    forest_rmse_scores=rmse(RandomForestRegressor(random_state=42))
+    print('forest_rmse_scores:')
+    display_scores(forest_rmse_scores)
+
+
+
+代码运行结果
+
+    lin_rmse_scores:
+    Scores:  [66782.73843989 66960.118071   70347.95244419 74739.57052552
+     68031.13388938 71193.84183426 64969.63056405 68281.61137997
+     71552.91566558 67665.10082067]
+    Mean:  69052.46136345083
+    Standard deviation:  2731.6740017983466
+
+    tree_rmse_scores:
+    Scores:  [70232.0136482  66828.46839892 72444.08721003 70761.50186201
+     71125.52697653 75581.29319857 70169.59286164 70055.37863456
+     75370.49116773 71222.39081244]
+    Mean:  71379.07447706361
+    Standard deviation:  2458.3188204349362
+
+    svr_rmse_scores:
+    Scores:  [105342.09141998 112489.24624123 110092.35042753 113403.22892482
+     110638.90119657 115675.8320024  110703.56887243 114476.89008206
+     113756.17971227 111520.1120808 ]
+    Mean:  111809.84009600841
+    Standard deviation:  2762.393664321567
+
+    forest_rmse_scores:
+    Scores:  [51650.94405471 48920.80645498 52979.16096752 54412.74042021
+     50861.29381163 56488.55699727 51866.90120786 49752.24599537
+     55399.50713191 53309.74548294]
+    Mean:  52564.19025244012
+    Standard deviation:  2301.873803919754
+
+我们采用评分标准是均方根误差(`scoring='neg_mean_squared_error'`，其中cross_val_score为负值，这是由于设计需要)，用10折交叉检验来检验数据(`cv=10`)。
+
+目前预测结果并不理想，因为模型还需要调节它的参数，这样才可以达到更好的效果。不同的算法有不同的参数，需要具体分别调参，如果一个一个手动去挑，你有这个精力和耐心也不是不可以，但是sklearn里面其实已经有个半自动化的方法`GridSearchCV`，你只需要给定你所要调节的参数和参数各种值，当然如果你的取值范围过大，或者数据过大，你也可以考虑尝试`RandomForestRegressor`。
+
+    param_grid = [
+        {'n_estimators': [3, 10, 30], 'max_features': [2, 4, 6, 8]},
+        {'bootstrap': [False], 'n_estimators': [3, 10], 'max_features': [2, 3, 4]},
+      ]
+    forest_reg = RandomForestRegressor(random_state=42)
+    grid_search = GridSearchCV(forest_reg, param_grid, cv=5,scoring='neg_mean_squared_error')
+    grid_search.fit(housing_prepared, housing_labels)
+    print('best_params_: \n',grid_search.best_params_)
+    print('grid_search.best_estimator_: \n',grid_search.best_estimator_)
+
+代码运行结果
+
+    best_params_: 
+     {'max_features': 8, 'n_estimators': 30}
+    grid_search.best_estimator_: 
+     RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
+               max_features=8, max_leaf_nodes=None, min_impurity_decrease=0.0,
+               min_impurity_split=None, min_samples_leaf=1,
+               min_samples_split=2, min_weight_fraction_leaf=0.0,
+               n_estimators=30, n_jobs=1, oob_score=False, random_state=42,
+               verbose=0, warm_start=False)
+
+或者
+
+    param_distribs = {
+        'n_estimators': randint(low=1, high=200),
+        'max_features': randint(low=1, high=8),
+        }
+    forest_reg = RandomForestRegressor(random_state=42)
+    grid_search = RandomizedSearchCV(forest_reg, param_distributions=param_distribs,n_iter=10, cv=5, scoring='neg_mean_squared_error', random_state=42)
+    grid_search.fit(housing_prepared, housing_labels)
+    cvres = grid_search.cv_results_
+    for mean_score, params in zip(cvres["mean_test_score"], cvres["params"]):
+        print(np.sqrt(-mean_score), params)
+
+代码运行结果
+
+    49147.15241724505 {'max_features': 7, 'n_estimators': 180}
+    51396.876896929905 {'max_features': 5, 'n_estimators': 15}
+    50797.05737322649 {'max_features': 3, 'n_estimators': 72}
+    50840.744513982805 {'max_features': 5, 'n_estimators': 21}
+    49276.17530332962 {'max_features': 7, 'n_estimators': 122}
+    50775.46331678437 {'max_features': 3, 'n_estimators': 75}
+    50681.383924974936 {'max_features': 3, 'n_estimators': 88}
+    49612.152530468346 {'max_features': 5, 'n_estimators': 100}
+    50473.01751424941 {'max_features': 3, 'n_estimators': 150}
+    64458.25385034794 {'max_features': 5, 'n_estimators': 2}
+
+在Random Forests中属性`feature_importances_`可以表示每个特征对应标签的重要性。下面我们来看看，首先生成全部特征，然后和重要性匹配。
+
+    feature_importances=grid_search.best_estimator_.feature_importances_
+    extra_attribs = ['rooms_per_hhold', 'pop_per_hhold', 'bedrooms_per_room']
+    cat_encoder = cat_pipeline.named_steps['cat_encoder']
+    cat_one_hot_attribs = list(cat_encoder.categories_[0])
+    attributes = num_attribs + extra_attribs + cat_one_hot_attribs
+    for i in sorted(zip(feature_importances,attributes),reverse=True):
+        print(i)
+
+代码运行结果
+
+    (0.34517840438011976, 'median_income')
+    (0.16056322891587674, 'INLAND')
+    (0.10846844860879656, 'pop_per_hhold')
+    (0.0724699051555905, 'longitude')
+    (0.07059074984842854, 'bedrooms_per_room')
+    (0.06380803224443843, 'latitude')
+    (0.05744453597184107, 'rooms_per_hhold')
+    (0.042750439456624885, 'housing_median_age')
+    (0.016534380739553062, 'total_rooms')
+    (0.016092910597195798, 'population')
+    (0.015610076150868497, 'total_bedrooms')
+    (0.015214959838627945, 'households')
+    (0.008774413032023278, '<1H OCEAN')
+    (0.0033488619987510427, 'NEAR OCEAN')
+    (0.0030896126618977565, 'NEAR BAY')
+    (6.104039936629336e-05, 'ISLAND')
+
+通过上面的信息，你也许可以放弃一些没有贡献的特征。比如，`ocean_proximity`只有`INLAND`是有用的，其他的加进去效果并不明显，可以考虑删除它们。
+
+当然，模型不止这些，还有很多效果很棒的，比如Xgboost和Lightgbm，还有Stacking大杀器。这边暂且不谈。
+
+到目前为止，我们已经完成了data的准备，特征工程，model的选择，model的调参，model的性能测试。让我们的模型去进行预测吧！
+
+    final_model=grid_search.best_estimator_
+    X_test=strat_test_set.drop('median_house_value',axis=1)
+    y_test=strat_test_set['median_house_value'].copy()
+    X_test_prepared=full_pipeline.transform(X_test)
+    final_predictions=final_model.predict(X_test_prepared)
+    final_rmse=np.sqrt(mean_squared_error(y_test,final_predictions))
+    print('final_rmse: ',final_rmse)
+
+运行代码结果
+
+    final_rmse:  46921.659310064526
+
+看起来是比以前好多了，但是还是有很多参数未调，也可以选择更好的模型，特征也可能还有再挖掘的价值。
+
+整个`Machine Learning Project`大致流程就是这样，很多不足之处有待改进。
