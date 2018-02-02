@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      End to End Machine Learning Project(1)
+title:      End to End Machine Learning Project
 subtitle:   
 date:       2018-02-01
 author:     JD
