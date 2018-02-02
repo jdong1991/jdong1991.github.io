@@ -26,18 +26,20 @@ tags:
 粗略观察数据信息
 
     import pandas as pd
-	import numpy as np
-	import matplotlib.pyplot as plt
-	import matplotlib.image as mpimg
-	from sklearn.model_selection import train_test_split,StratifiedShuffleSplit
-	from sklearn.preprocessing import Imputer,LabelEncoder,OneHotEncoder,LabelBinarizer,StandardScaler
-	from sklearn.base import BaseEstimator,TransformerMixin
-	from sklearn.pipeline import Pipeline,FeatureUnion
-	from CategoricalEncoder import CategoricalEncoder
-	from sklearn.linear_model import LinearRegression
-	from sklearn.metrics import mean_squared_error,mean_absolute_error
-	from sklearn.tree import DecisionTreeRegressor
-	from sklearn.model_selection import cross_val_score
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import matplotlib.image as mpimg
+    from sklearn.model_selection import train_test_split,StratifiedShuffleSplit,GridSearchCV,cross_val_score,RandomizedSearchCV
+    from sklearn.preprocessing import Imputer,LabelEncoder,OneHotEncoder,LabelBinarizer,StandardScaler
+    from sklearn.base import BaseEstimator,TransformerMixin
+    from sklearn.pipeline import Pipeline,FeatureUnion
+    from CategoricalEncoder import CategoricalEncoder
+    from sklearn.linear_model import LinearRegression
+    from sklearn.metrics import mean_squared_error,mean_absolute_error
+    from sklearn.tree import DecisionTreeRegressor
+    from sklearn.svm import SVR
+    from sklearn.ensemble import RandomForestRegressor
+    from scipy.stats import randint
 	
 	housing=pd.read_csv('./housing.csv')
     print(housing.head(5))
