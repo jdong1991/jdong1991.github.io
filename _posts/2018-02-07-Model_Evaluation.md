@@ -639,7 +639,7 @@ $$with \qquad rank_{ij}=|\{k:\hat{f_{ik}}\geqslant \hat{f_{ij}} \}|$$
 
 $$LRAP(y,\hat{f})=\frac{1}{n_{samples}}\sum_{i=0}^{n_{samples}-1} \frac{1}{|y_i|}\sum_{j:y_{ij}=1}\frac{|L_{ij}|}{rank_{ij}}$$ 
 
-$$with L_{ij}=\{k:y_{ij}=1,\hat{f_{ik}} \geqslant \hat{f_{ij}}\},rank_{ij}=|\{k:\hat{f_{ik}}\geqslant \hat{f_{ij}} \}|$$
+$$with \qquad L_{ij}=\{k:y_{ij}=1,\hat{f_{ik}} \geqslant \hat{f_{ij}}\},rank_{ij}=|\{k:\hat{f_{ik}}\geqslant \hat{f_{ij}} \}|$$
 
 下面是个小例子
 
@@ -805,7 +805,7 @@ R² score是可以度量模型预测未知样本的性能。R² score为1最好�
 
 $$R^2 (y,\hat{y})=1-\frac{\sum_{i=0}^{n_{samples}-1} (y_i-\hat{y_i})^2}{\sum_{i=0}^{n_{samples}-1} (y_i-\hat{y})^2}$$
 
-$$where y^{-}=\frac{1}{n_{samples}}\sum_{i=0}^{n_{samples}y_i$$
+$$where \overline{y}=\frac{1}{n_{samples}} \sum_{i=0}^{n_{samples}} y_i$$
 
 `r2_score`实现
 
