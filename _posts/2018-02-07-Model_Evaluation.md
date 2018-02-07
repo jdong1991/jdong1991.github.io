@@ -616,7 +616,7 @@ Coverage error是计算实际标签所对应的概率标签，该概率标签在
 
 $$coverage(y,\hat{f})=\frac{1}{n_{samples}}\sum_{i=0}{n_{samples}-1}max_{j:y_{ij}=1}rank_{ij}$$
 
-$$with rank_{ij}=|\{k:\hat{f_{ik}}\geqslant \hat{f_{ij}} \}|$$
+$$with \qquad rank_{ij}=|\{k:\hat{f_{ik}}\geqslant \hat{f_{ij}} \}|$$
 
 `coverage_error`实现
 
