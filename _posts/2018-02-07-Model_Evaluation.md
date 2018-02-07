@@ -19,7 +19,7 @@ tags:
 
 设计时为了统一规则，`scoring`都是越大越好，像`metrics.mean_squared_error`是取它的负值`neg_mean_squared_error`。
 
-## Classification
+# Classification
 
 ### accuracy
 
@@ -265,7 +265,7 @@ skearn的`confusion_matrix`用来计算混淆矩阵。
 
 `hamming_loss`计算两个样本之间额Hamming距离。
 
-$$L_{Hamming}(y,\hat{y})=\frac{1}{n_{labels}\sum_{j=0}^{n_{labels}-1}I(\hat{y_j}\ne y_j)$$
+$$L_{Hamming} (y,\hat{y})=\frac{1}{n_{labels}} \sum_{j=0}^{n_{labels}-1} I(\hat{y_j}\ne y_j)$$
 
 其中，\\(\hat{y_j}\\)是第j个样本的预测值，\\(y_j\\)是第j个样本的真实值，\\(n_{labels}\\)是标签总数，I(x)是指示函数。
 
@@ -614,7 +614,9 @@ $$BS=\frac{1}{N}\sum_{t=1}^N(f_t-o_t)^2$$
 
 Coverage error是计算实际标签所对应的概率标签，该概率标签在预测样本的多标签排序的序号，再求平均值。
 
-$$coverage(y,\hat{f})=\frac{1}{n_{samples}}\sum_{i=0}{n_{samples}-1}max_{j:y_{ij}=1}rank_{ij} \qquad with rank_{ij}=|\{k:\hat{f_{ik}}\geqslant \hat{f_{ij}} \}|$$
+$$coverage(y,\hat{f})=\frac{1}{n_{samples}}\sum_{i=0}{n_{samples}-1}max_{j:y_{ij}=1}rank_{ij}$$
+
+$$with rank_{ij}=|\{k:\hat{f_{ik}}\geqslant \hat{f_{ij}} \}|$$
 
 `coverage_error`实现
 
@@ -672,7 +674,7 @@ python实现
     label_ranking_loss1: 0.75
     label_ranking_loss2: 0.0
 
-## Regression
+# Regression
 
 回归比较简单，简略介绍下。
 
@@ -801,7 +803,9 @@ $$MedAE(y,\hat{y})=median(|y_1-\hat{y_1}|,...,|y_n-\hat{y_n}|)$$
 
 R² score是可以度量模型预测未知样本的性能。R² score为1最好，也可以为负数。当是一个常数模型，对于任何的输入值，总是可以得到预测值y，那么R² score为0.
 
-$$R^2(y,\hat{y})=1-\frac{\sum_{i=0}^{n_{samples}-1}(y_i-\hat{y_i})^2}{\sum_{i=0}^{n_{samples}-1}(y_i-\hat{y})^2} \qquad where y^{-}=\frac{1}{n_{samples}}\sum_{i=0}^{n_{samples}y_i$$
+$$R^2 (y,\hat{y})=1-\frac{\sum_{i=0}^{n_{samples}-1} (y_i-\hat{y_i})^2}{\sum_{i=0}^{n_{samples}-1} (y_i-\hat{y})^2}$$
+
+$$where y^{-}=\frac{1}{n_{samples}}\sum_{i=0}^{n_{samples}y_i$$
 
 `r2_score`实现
 
