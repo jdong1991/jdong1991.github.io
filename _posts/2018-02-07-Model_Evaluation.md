@@ -377,11 +377,11 @@ $$J(y_i,\hat{y_i})=\frac{|y_i\bigcap \hat{y_i}|}{|y_i\bigcup \hat{y_i}|}$$
 - \\(\hat{y}\\)是真实(sample,label)的集合
 - L是标签的集合
 - S是样本的集合
-- \\(y_s\\)是样本s的子集，\\(y_s:=\{(s',l)\in y|s'=s \}\\)
+- \\(y_s\\)是样本s的子集，\\(y_s:=\{(s',l)\in y \| s'=s \}\\)
 - \\(y_l\\)是标签为l的y的子集
 - 相似的，\\(\hat{y_s}\\)和\\(\hat{y_l}\\)是\\(\hat{y}\\)的子集
-- \\(P(A,B):=\frac{|A\bigcap B|}{|A|}\\)
-- \\(R(A,B):=\frac{|A\bigcap B|}{|A|}\\)
+- \\(P(A,B):=\frac{A \bigcap B}{A}\\)
+- \\(R(A,B):= \frac{A \bigcap B}{A} \\)
 - \\(F_{\beta}(A,B):=(1+\beta^2)\frac{P(A,B)\cdot R(A,B)}{\beta^2\cdot P(A,B)+R(A,B)}\\)
 
 ![](http://wx2.sinaimg.cn/mw690/006F1DTzgy1fo6kfjhuorj30rn05j3zn.jpg)
