@@ -25,7 +25,7 @@ tags:
 
 精确度的计算公式为
 
-$$accuracy(y,\hat{y})=frac{1}{n_{samples}} \sum_{i=0}^{n_{samples}-1} I(\hat{y_i}=y_i)$$
+$$accuracy(y,\hat{y})=\frac{1}{n_{samples}} \sum_{i=0}^{n_{samples}-1} I(\hat{y_i}=y_i)$$
 
 \\(\hat{y_i}\\)是第i个样本的预测值，\\(y_i\\)是第i个样本的真实值,`I`是指示函数。
 
@@ -616,7 +616,7 @@ Coverage error是计算实际标签所对应的概率标签，该概率标签在
 
 $$coverage(y,\hat{f})=\frac{1}{n_{samples}}\sum_{i=0}{n_{samples}-1}max_{j:y_{ij}=1}rank_{ij}$$
 
-$$with \qquad rank_{ij}=|\{k:\hat{f_{ik}}\geqslant \hat{f_{ij}} \}|$$
+$$with \quad rank_{ij}=|\{k:\hat{f_{ik}}\geqslant \hat{f_{ij}} \}|$$
 
 `coverage_error`实现
 
@@ -639,7 +639,7 @@ $$with \qquad rank_{ij}=|\{k:\hat{f_{ik}}\geqslant \hat{f_{ij}} \}|$$
 
 $$LRAP(y,\hat{f})=\frac{1}{n_{samples}}\sum_{i=0}^{n_{samples}-1} \frac{1}{|y_i|}\sum_{j:y_{ij}=1}\frac{|L_{ij}|}{rank_{ij}}$$ 
 
-$$with \qquad L_{ij}=\{k:y_{ij}=1,\hat{f_{ik}} \geqslant \hat{f_{ij}}\},rank_{ij}=|\{k:\hat{f_{ik}}\geqslant \hat{f_{ij}} \}|$$
+$$with \quad L_{ij}=\{k:y_{ij}=1,\hat{f_{ik}} \geqslant \hat{f_{ij}}\},rank_{ij}=|\{k:\hat{f_{ik}}\geqslant \hat{f_{ij}} \}|$$
 
 下面是个小例子
 
@@ -682,7 +682,7 @@ python实现
 
 explained variation是用来度量一个数据模型对给定数据集的变化(分散)的比例。可以用下面公式估计：
 
-$$explained_variance(y,\hat{y})=1-\frac{Var\{y-\hat{y}\}}{Var\{y\}}$$
+$$explained\_variance(y,\hat{y})=1-\frac{Var\{y-\hat{y}\}}{Var\{y\}}$$
 
 其中最好的分数是1，越小越差。
 
