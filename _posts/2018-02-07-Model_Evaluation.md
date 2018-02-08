@@ -762,7 +762,7 @@ $$MSE(y,\hat{y})\sum_{i=0}^{n_{samples}-1}(y_i-\hat{y_i})^2$$
 
 MSLE和MSE类似，不过先取`np.log1p`，然后再进行MSE。
 
-$$MSLE(y,\hat{y})\sum_{i=0}^{n_{samples}-1}(log_e(1+y_i)-log_e(1+\hat{y_i}))^2$$
+$$MSLE(y,\hat{y})=\sum_{i=0}^{n_{samples}-1}(log_e(1+y_i)-log_e(1+\hat{y_i}))^2$$
 
 `mean_squared_log_error`实现
 
@@ -805,7 +805,7 @@ R² score是可以度量模型预测未知样本的性能。R² score为1最好�
 
 $$R^2 (y,\hat{y})=1-\frac{\sum_{i=0}^{n_{samples}-1} (y_i-\hat{y_i})^2}{\sum_{i=0}^{n_{samples}-1} (y_i-\hat{y})^2}$$
 
-$$where \overline{y}=\frac{1}{n_{samples}} \sum_{i=0}^{n_{samples}} y_i$$
+$$where \quad \overline{y}=\frac{1}{n_{samples}} \sum_{i=0}^{n_{samples}} y_i$$
 
 `r2_score`实现
 
