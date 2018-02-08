@@ -112,9 +112,9 @@ ShuffleSplit是先打乱数据集，然后分成一对训练集和测试集。
 
 代码运行结果
 
-[1 3 4] [2 0]
-[1 4 3] [0 2]
-[4 0 2] [1 3]
+    [1 3 4] [2 0]
+    [1 4 3] [0 2]
+    [4 0 2] [1 3]
 
 ### Cross-validation iterators with stratification based on class labels
 
