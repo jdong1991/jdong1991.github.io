@@ -243,7 +243,7 @@ GroupShuffleSplit是ShuffleSplit和LeavePGroupsOut的组合。
 
 ### Predefined Fold-Splits / Validation-Sets
 
-PredefinedSplit是预先定义好哪些可以作为交叉检验的样本，并可以给样本编号，按照样本编号来分割样本。其中test_fold为-1的时候，该样本只可以做为训练集样本。下面是分为了3-fold，因为test_fold只有0和1。
+PredefinedSplit是预先定义好哪些可以作为交叉检验的样本，并可以给样本编号，按照样本编号来分割样本。其中test_fold为-1的时候，该样本只可以做为训练集样本。下面是分为了2-fold，因为test_fold只有0和1。
 
     import numpy as np
     from sklearn.model_selection import PredefinedSplit
