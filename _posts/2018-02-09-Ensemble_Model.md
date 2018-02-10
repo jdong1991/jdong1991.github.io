@@ -256,9 +256,9 @@ AdaBoost是adaptive boosting的缩写，即自适应boosting。它是将训练�
 
 其中`algorithm='SAMME'`就是AdaBoost，`algorithm='SAMME.R'`是通过分类概率来进行AdaBoost。若出现过拟合问题，可以适当减小`n_estimators`。
 
-#### Grandient Boosting
+#### Gradient Boosting
 
-Grandient Boosting是使用上个分类器得到分类结果的残差来做为当前分类器的训练数据。
+Gradient Boosting是使用上个分类器得到分类结果的残差来做为当前分类器的训练数据。
 
 ##### GBDT
 
