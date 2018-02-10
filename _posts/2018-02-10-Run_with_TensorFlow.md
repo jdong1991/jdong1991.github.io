@@ -245,7 +245,7 @@ TensorFlow也提供了优化器，可以更好帮你计算梯度问题。
                 sess.run(training_op,feed_dict={X:X_batch,y:y_batch})
         print('best_theta:\n',theta.eval())
             
-代码实现结果
+代码运行结果
 
     epoch:0,mse:0.5039
     epoch:1,mse:0.5963
