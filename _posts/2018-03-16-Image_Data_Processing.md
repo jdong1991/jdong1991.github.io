@@ -2,7 +2,7 @@
 layout:     post
 title:      Image Data Processing
 subtitle:   
-date:       2018-02-10
+date:       2018-03-16
 author:     JD
 header-img: img/post-jd-idp.jpg
 catalog: true
