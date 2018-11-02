@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Catergorical Attributes
+title:      XAMPP & Oracle
 subtitle:   
 date:       2018-10-11
 author:     JD
