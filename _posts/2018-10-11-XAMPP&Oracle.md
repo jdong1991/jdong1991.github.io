@@ -11,9 +11,9 @@ tags:
     - ORACLE
 ---
 
-# Linux下安装XAMPP
+## Linux下安装XAMPP
 
-## 环境及软件版本
+### 环境及软件版本
 
 服务器系统(cat /etc/issue)
     
@@ -37,15 +37,15 @@ Oracle客户端所涉及软件
     instantclient-sqlplus-linux.x64-11.2.0.4.0.zip
     instantclient-sdk-linux.x64-11.2.0.4.0.zip
 
-## 安装Oracle客户端
+### 安装Oracle客户端
 
-### 压缩文件解压到/usr/local/oracle
+#### 压缩文件解压到/usr/local/oracle
 
     unzip instantclient-basic-linux.x64-11.2.0.4.0.zip
     unzip instantclient-sqlplus-linux.x64-11.2.0.4.0.zip
     unzip instantclient-sdk-linux.x64-11.2.0.4.0.zip
 
-### 新建tnsnames.ora文件
+#### 新建tnsnames.ora文件
     
     cd instantclient_11_2
     ln -s libclntsh.so.11.1 libclntsh.so 
@@ -64,7 +64,7 @@ Oracle客户端所涉及软件
         )
       )
 
-### 配置环境变量
+#### 配置环境变量
 
 编辑配置文件
 
@@ -82,7 +82,7 @@ Oracle客户端所涉及软件
 
     source .bash_profile
 
-### 测试连接数据库
+#### 测试连接数据库
 
 使用sqlplus连接数据库，第一个`reporter`是用户名，第二个`reporter`是密码，ORCL就是我们配置tnsnames.ora里面的别名
 
@@ -94,9 +94,9 @@ Oracle客户端所涉及软件
 
 完工，进行下一步！
 
-## XAMPP安装及部署
+### XAMPP安装及部署
 
-### 安装XAMPP
+#### 安装XAMPP
 
 首先将`xampp-linux-x64-7.2.10-0-installer.run`放到服务器。给它755的权限
 
@@ -118,7 +118,7 @@ Oracle客户端所涉及软件
 
 ![](http://wx3.sinaimg.cn/mw690/006F1DTzgy1fwrb7kmmpxj30hd0epdgy.jpg)
 
-### 部署XAMPP
+#### 部署XAMPP
 
 手动启动XAMPP
 
@@ -326,7 +326,7 @@ Oracle客户端所涉及软件
     XAMPP: Starting MySQL...ok.
     XAMPP: Starting ProFTPD...ok.
 
-## oci8连接Oracle
+### oci8连接Oracle
 
 这个集成环境需要设置才可以连接Oracle。
 
