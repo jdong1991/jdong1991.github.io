@@ -443,4 +443,4 @@ Oracle客户端所涉及软件
 
 ![](http://wx3.sinaimg.cn/mw690/006F1DTzgy1fwrmc1ml7rj30lx082jrr.jpg)
 
-相关软件轻点我~~~
+获取相关软件包[点我](https://pan.baidu.com/s/1VpHTGMuEAmX00zv6kLG_EA)，密码是`jylt`
