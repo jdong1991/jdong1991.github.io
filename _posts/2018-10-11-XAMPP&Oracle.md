@@ -48,6 +48,7 @@ Oracle客户端所涉及软件
 ### 新建tnsnames.ora文件
     
     cd instantclient_11_2
+    ln -s libclntsh.so.11.1 libclntsh.so 
     mkdir -p network/admin
     cd network/admin
     vi tnsnames.ora
@@ -281,6 +282,22 @@ Oracle客户端所涉及软件
 | /opt/lampp/etc/php.ini | PHP配制文件 |
 | /opt/lampp/etc/proftpd.conf | ProFTPD配制文件 |
 | /opt/lampp/phpmyadmin/config.inc.php | phpMyAdmin配制文件 |
+
+以及常用的命令，其中`ssl`、`ftp`需要单独开启或停止。
+
+|参数|描述|
+|-|-|
+|start|启动XAMPP|
+|stop|停止XAMPP|
+|restart|重新启动XAMPP|
+|startapache|启动apache|
+|startssl|启动Apache的SSL支持,停止XAMPP仍会继续运行|
+|startmysql|启动MySQL数据库|
+|startftp|启动ProFTPD服务器,停止XAMPP仍会继续运行|
+|stopapache|停止Apache的SSL支持|
+|stopmysql|停止MySQL数据库|
+|stopftp|停止ProFTPD服务器|
+|security|启动一个小型安全检查程序|
 
 修改端口号
 
