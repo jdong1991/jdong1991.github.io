@@ -62,7 +62,7 @@ kramdown:
 gitalk:
   enable: true    #是否开启Gitalk评论
   clientID: 0e9dfc1d5c8aebc1ab55   #生成的clientID
-  clientSecret: d33911059ba495db7dd8350c4d6ee80671c56e87  #同上
+  clientSecret: 79e85a7c57f1242f2482a14a2ff43ac748305ba6  #同上
   repo: jdong1991.github.io    #仓库名称
   owner: jdong1991    #github用户名
   admin: jdong1991
