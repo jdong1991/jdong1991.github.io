@@ -10,9 +10,9 @@ tags:
     - tesserocr
 ---
 
-tesserocr是Python的一个OCR识别库，其实就是对tesseract做了一层Python API的封装。本质还是使用tesseract。
+`tesserocr`是Python的一个OCR识别库，其实就是对`tesseract`做了一层Python API的封装。本质还是使用`tesseract`。
 
-因此，要想使用tesserocr，就需要先安装tesseract。
+因此，要想使用`tesserocr`，就需要先安装`tesseract`。
 
 tesseract的下载地址为[https://digi.bib.uni-mannheim.de/tesseract/](https://digi.bib.uni-mannheim.de/tesseract/)
 
