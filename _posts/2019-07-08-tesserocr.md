@@ -58,3 +58,22 @@ tesseract的下载地址为[https://digi.bib.uni-mannheim.de/tesseract/](https:/
 
 接下来需要使用python来调用（python版本为3.7）。
 
+然后安装`tesserocr`，使用pip来安装
+    
+    pip install tesserocr
+
+若出现下面报错，可以下载whl包来安装，下载地址在这 [tesserocr](https://github.com/simonflueckiger/tesserocr-windows_build/releases)
+
+     error: Microsoft Visual C++ 14.0 is required
+
+查看安装成功
+
+![](../img/post-jd-tesserocr/9.jpg)
+
+下面识别验证码实例
+
+有个验证码长这样
+
+![](../img/post-jd-tesserocr/10.jpg)
+
+现在需要先
