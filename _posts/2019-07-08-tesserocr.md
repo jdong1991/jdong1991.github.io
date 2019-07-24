@@ -20,39 +20,39 @@ tesseract的下载地址为[https://digi.bib.uni-mannheim.de/tesseract/](https:/
 
 在Windows10下安装
 
-![](https://www.jiangdongzml.com/img/post-jd-tesserocr/1.jpg)
+![](/img/post-jd-tesserocr/1.jpg)
 
 `next`->`I Agree`->`next`，然后到达`Choose Components`，可以选择需要的。
 
-![](https://www.jiangdongzml.com/img/post-jd-tesserocr/2.jpg)
+![](/img/post-jd-tesserocr/2.jpg)
 
 `Additional language data(download)`里面可以选择所需要的语言包。然后选择安装路径
 
-![](https://www.jiangdongzml.com/img/post-jd-tesserocr/3.jpg)
+![](/img/post-jd-tesserocr/3.jpg)
 
 安装完成后，需要自己配置环境变量
 
 在`Path`里添加`C:\Tesseract-OCR`和`C:\Tesseract-OCR\tessdata`
 
-![](https://www.jiangdongzml.com/img/post-jd-tesserocr/4.jpg)
+![](/img/post-jd-tesserocr/4.jpg)
 
 在系统变量中新增变量`TESSDATA_PREFIX`,变量值是`C:\Tesseract-OCR\tessdata`
 
-![](https://www.jiangdongzml.com/img/post-jd-tesserocr/5.jpg)
+![](/img/post-jd-tesserocr/5.jpg)
 
 可以使用验证码来测试下
 
-![](https://www.jiangdongzml.com/img/post-jd-tesserocr/6.jpg)
+![](/img/post-jd-tesserocr/6.jpg)
 
 使用命令
     
     tesseract image.png result -l eng 
 
-![](https://www.jiangdongzml.com/img/post-jd-tesserocr/7.jpg)
+![](/img/post-jd-tesserocr/7.jpg)
 
 得到图片
 
-![](https://www.jiangdongzml.com/img/post-jd-tesserocr/8.jpg)
+![](/img/post-jd-tesserocr/8.jpg)
 
 已经成功将图片转成文本。
 
@@ -68,12 +68,12 @@ tesseract的下载地址为[https://digi.bib.uni-mannheim.de/tesseract/](https:/
 
 查看安装成功
 
-![](../img/post-jd-tesserocr/9.jpg)
+![](/img/post-jd-tesserocr/9.jpg)
 
 下面识别验证码实例
 
 有个验证码长这样
 
-![](../img/post-jd-tesserocr/10.jpg)
+![](/img/post-jd-tesserocr/10.jpg)
 
 现在需要先
